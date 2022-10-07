@@ -14,10 +14,9 @@ export class AppComponent {
   public timeLater: Date;
   public initialChar: number;
   public initialWords: number;
+  public chartSpeed:number;
+  public wordSpeed:number;
   @ViewChild("textElement",{static:false}) textArea:ElementRef;
-
-  title = 'typeSpeed';
-
   constructor(){
     this.text = "";    
     this.textArea = {} as ElementRef;
@@ -25,7 +24,10 @@ export class AppComponent {
     this.timeLater = new Date();
     this.initialChar = 0;
     this.initialWords = 0;
+    this.chartSpeed = 0;
+    this.wordSpeed = 0;
   }
+
   
 
   begin(){
@@ -42,17 +44,13 @@ export class AppComponent {
     let totalWords = this.countWords();
     let chartPerSec = totalChar/diffDatesSec;
     let wordsPerMin = totalWords/diffDatesMin;
-    console.log('count');
-    console.log(diffDates_ms);
-    console.log(diffDatesSec);
-    console.log(diffDatesMin);
-    console.log(chartPerSec);
-    console.log(wordsPerMin);
+    this.chartSpeed = Math.round(chartPerSec);
+    this.wordSpeed = Math.round(wordsPerMin);
   }
 
   resetAll(){
-    this.textArea.nativeElement.focus();
-    this.textArea.nativeElement.value="";
+    this.begin();
+    this.textArea.nativeElement.value=""
     this.initialChar = this.countChar();
     this.initialWords = this.countWords();
   }

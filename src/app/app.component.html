@@ -1,9 +1,23 @@
-<div id="langWrapper">
-  <span>What is the meaning of 🏴 ☠ 🇨🇭 🇲🇽 🇷🇼?</span>
-</div>
-<div id="text-wrapper">
-  <textarea #textElement (input)="displayCounter()" id="text" [(ngModel)]="text"></textarea>
-</div>
-<div id="buttons-wrapper">
-  <button (click)="begin()">Iniciar</button>
+<div id="app-wrapper">
+  <div id="langWrapper">
+    
+  </div>
+
+  <div id="text-wrapper">
+    <textarea #textElement (input)="displayCounter()" id="text" [(ngModel)]="text"></textarea>
+  </div>
+  <div id="control-wrapper">
+    <button (click)="resetAll()">Iniciar</button>
+    
+  </div>
+  <div id="chartSpeedWrapper">
+    <p id="chartSpeed">{{chartSpeed}}</p>
+  </div>
+  <div id="wordSpeedWrapper">
+    <p id="wordSpeed">{{wordSpeed}}</p>
+  </div>
+  
+    
+
+  
 </div>
