@@ -7,9 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 
+import{ MatDialogModule } from '@angular/material/dialog';
 
 import { TranslateModule,TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SelectLanguageComponent } from './components/dialogs/select-language/select-language.component';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -17,7 +20,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SelectLanguageComponent
+  ],
+  exports:[
+    
   ],
   imports: [
     BrowserModule,
@@ -30,8 +37,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-    }
-    })
+      }    
+    }),
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

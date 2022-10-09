@@ -1,11 +1,6 @@
 <div id="app-wrapper">
-  <div id="langWrapper">
-    <p *ngFor="let languageOption of languageOptions">
-      {{languageOption.symbol}}
-      {{languageOption.languageText}}
-      {{languageOption.language}}
-    </p>
-
+  <div id="langWrapper">  
+      <button (click)="openChangeLanguage()"></button>
   </div>
 
   <div id="text-wrapper">

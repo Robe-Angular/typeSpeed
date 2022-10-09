@@ -1,5 +1,8 @@
 {
     "HOME":{
         "BEGIN": "Beginnen"
+    },
+    "LANG":{
+        "TITLE":"Wahle eine Sprache"
     }
 }
