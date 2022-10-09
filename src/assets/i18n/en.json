@@ -1,6 +1,8 @@
 {
     "HOME":{
-        "BEGIN": "Begin"
+        "BEGIN": "Begin",
+        "CHARTSPEED":"Characters per second",
+        "WORDSPEED":"Words per minute"
     },
     "LANG":{
         "TITLE":"Select a language"

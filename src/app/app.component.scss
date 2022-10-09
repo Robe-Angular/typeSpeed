@@ -46,22 +46,29 @@
     }    
 }
 
+@mixin information($colorInBackground,$colorOfText){
+    display: inline-block;
+        
+    background-color:$colorInBackground ;
+    color: $colorOfText;
+    font:400 30px/32px Arial;
+    border-radius: 15px;
+    border: 3px solid #EDF7F6;
+    padding: 5px 7px;
+    transition: all 200ms;
+}
+
 #control-wrapper{
+    margin-bottom: 10px;
     width: 100%;
     text-align: center;
     button{
-        display: inline-block;
-        
-        background-color:#A18089 ;
-        color: #EDF7F6;
-        font:400 30px/32px Arial;
-        border-radius: 15px;
-        border: 3px solid #EDF7F6;
-        transition: all 200ms;
+        @include information(#b08d96,#EDF7F6 );
         &:hover{
             cursor: pointer;
             background-color: #D5A5AF;
         }
+        
 
     }
     
@@ -71,17 +78,16 @@
     width: 100%;
     text-align: center;
     #chartSpeed{
-        display: inline-block;
-        
+        @include information(#83686f,#f0f7f6 );        
     }
+
 }
 
 #wordSpeedWrapper{
     width: 100%;
     text-align: center;
     #wordSpeed{
-        display: inline-block;
-        
+        @include information(#514246,#ecf1f1 );
     }
 }
 
