@@ -1,23 +1,26 @@
 <div id="app-wrapper">
   <div id="langWrapper">
-    
+    <p *ngFor="let languageOption of languageOptions">
+      {{languageOption.symbol}}
+      {{languageOption.languageText}}
+      {{languageOption.language}}
+    </p>
+
   </div>
 
   <div id="text-wrapper">
     <textarea #textElement (input)="displayCounter()" id="text" [(ngModel)]="text"></textarea>
   </div>
   <div id="control-wrapper">
-    <button (click)="resetAll()">Iniciar</button>
+    <button (click)="resetAll()">{{'HOME.BEGIN'|translate}}</button>
     
   </div>
   <div id="chartSpeedWrapper">
-    <p id="chartSpeed">{{chartSpeed}}</p>
+    <p id="chartSpeed">Letras por segundo: <span>{{chartSpeed}}</span></p>
   </div>
   <div id="wordSpeedWrapper">
-    <p id="wordSpeed">{{wordSpeed}}</p>
-  </div>
-  
-    
+    <p id="wordSpeed">Palabras por minuto: <span>{{wordSpeed}}</span></p>
+  </div> 
 
   
 </div>

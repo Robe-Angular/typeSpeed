@@ -1,5 +1,12 @@
-import { Component,ViewChild,ElementRef } from '@angular/core';
+import { Component,ViewChild,ElementRef,OnInit,DoCheck } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
+interface languageOption{
+  symbol:string,
+  languageText:string,
+  language:string
+
+}
 
 @Component({
   selector: 'app-root',
@@ -16,8 +23,16 @@ export class AppComponent {
   public initialWords: number;
   public chartSpeed:number;
   public wordSpeed:number;
+  public esFlags:Array<string>;
+  public deFlags:Array<string>;
+  public enFlags:Array<string>;
+  public languagesFlags: Array<Array<string>>;
+  public languageOptions: Array<languageOption>;
+
   @ViewChild("textElement",{static:false}) textArea:ElementRef;
-  constructor(){
+  constructor(
+    private _translate: TranslateService
+  ){
     this.text = "";    
     this.textArea = {} as ElementRef;
     this.startTime = new Date();
@@ -26,9 +41,48 @@ export class AppComponent {
     this.initialWords = 0;
     this.chartSpeed = 0;
     this.wordSpeed = 0;
+    _translate.setDefaultLang('en');
+    _translate.use('en');
+    this.esFlags = [
+      "🇦🇷","🇨🇱","🇨🇴","🇧🇴","🇨🇷","🇨🇺","🇩🇴","🇪🇨","🇸🇻","🇵🇾","🇬🇳","🇬🇹","🇭🇳","🇲🇽","🇳🇮","🇵🇦","🇵🇪","🇪🇸","🇺🇾","🇻🇪"
+    ];
+    this.enFlags = [
+      "🇬🇧","🇺🇸","🇦🇺","🇦🇬","🇧🇸","🇧🇧","🇧🇿","🇧🇼","🇨🇲","🇨🇦","🇩🇲","🇪🇷","🇵🇭","🇫🇯","🇬🇲","🇬🇭","🇬🇩","🇬🇾","🇮🇳","🇮🇪",
+      "🇯🇲","🇯🇴","🇰🇪","🇰🇮","🇱🇸","🇱🇷","🇲🇼","🇲🇹","🇲🇭","🇲🇺","🇫🇲","🇳🇦","🇳🇷","🇳🇿","🇳🇬","🇵🇰","🇵🇼","🇵🇬","🇷🇼","🇰🇳","🇱🇨","🇻🇨",
+      "🇦🇸","🇸🇨","🇸🇱","🇸🇬","🇸🇧","🇿🇦","🇸🇩","🇸🇿","🇹🇴","🇹🇿","🇹🇹","🇹🇻","🇺🇬","🇻🇺","🇿🇲","🇿🇼","🇼🇸","🇦🇮","🇧🇲","🇰🇾","🇯🇪","🇬🇮","🇳🇺",
+      "🇳🇫","🇵🇷","🇹🇰","🇨🇨","🇫🇰","🇻🇬","🇻🇮","🇬🇺","🇬🇬","🇭🇰","🇮🇲","🇨🇰","🇨🇽","🇲🇸","🇹🇨","🇵🇳","🇲🇵"
+    ]
+
+    this.deFlags = [
+      "🇩🇪","🇦🇹","🇨🇭","🇧🇪","🇱🇺","🇱🇮"
+    ]
+    this.languagesFlags = [];
+    this.languageOptions = [];
   }
 
-  
+  ngOnInit(){
+    this.languagesFlags.push(this.deFlags,this.esFlags,this.enFlags);
+    let languagesTextString = ["Deutsch","Español","English"];
+    let languagesOptions = ["de","es","en"];
+    let setOptionsCounter = 0;
+    this.languagesFlags.forEach( languageFlags => {
+      
+      let selectRdmFlag = (max:number) => {
+        return Math.floor(Math.random() * max);
+      };
+
+      let countFlagsOnLanguage = languageFlags.length;
+      let rdmFlag = selectRdmFlag(countFlagsOnLanguage);
+      this.languageOptions.push({
+
+        symbol: languageFlags[rdmFlag],
+        languageText: languagesTextString[setOptionsCounter],
+        language: languagesOptions[setOptionsCounter]
+
+      });
+      setOptionsCounter++;
+    });
+  }
 
   begin(){
     this.textArea.nativeElement.focus();
