@@ -1,9 +1,9 @@
 <h1 mat-dialog-title>{{'LANG.TITLE'|translate}}</h1>
 <div mat-dialog-content>
-    <p *ngFor="let languageOption of languageOptions">
-        <button (click)="selectLang(languageOption.language)">{{languageOption.symbol}}{{languageOption.languageText}}</button>
+    <p class="optionWrapper" *ngFor="let languageOption of languageOptions">
+        <button class="option" (click)="selectLang(languageOption.language)">{{languageOption.symbol}} {{languageOption.languageText}}</button>
     </p>
 </div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+<div id="closeWrapper" mat-dialog-actions>
+  <button id="close" mat-button mat-dialog-close>{{'DIALOG.CLOSE'|translate}}</button>
 </div>

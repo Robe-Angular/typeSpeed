@@ -1,0 +1,29 @@
+@mixin buttonOnLangDialog(){
+    display: inline;
+    background: none;
+    color: white;
+    border: none;
+    transition: all 200ms;
+    &:hover{
+        color:#a7a3a3;
+        cursor: pointer;
+    }
+}
+
+.optionWrapper{
+    text-align: center;
+    width: 100%;
+    .option{
+        @include buttonOnLangDialog();
+    }
+}
+
+#closeWrapper{
+    min-height: 15px;
+    padding: 0px;
+    margin-bottom: 0px;
+    #close{
+        @include buttonOnLangDialog();
+    }
+}
+

@@ -18,6 +18,8 @@ export class AppComponent {
   public initialWords: number;
   public chartSpeed:number;
   public wordSpeed:number;
+  public transLoaded:boolean;
+  
   
 
   @ViewChild("textElement",{static:false}) textArea:ElementRef;
@@ -33,8 +35,11 @@ export class AppComponent {
     this.initialWords = 0;
     this.chartSpeed = 0;
     this.wordSpeed = 0;
+    this.transLoaded = false;
     _translate.setDefaultLang('en');
-    _translate.use('en');
+    _translate.use('en').subscribe((res:any) => {
+      this.transLoaded = true;
+    });
     
   }
   begin(){

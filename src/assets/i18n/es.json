@@ -4,5 +4,8 @@
     },
     "LANG":{
         "TITLE":"Selecciona un idioma"
+    },
+    "DIALOG":{
+        "CLOSE":"Cerrar"
     }
 }

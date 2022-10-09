@@ -1,6 +1,6 @@
 <div id="app-wrapper">
-  <div id="langWrapper">  
-      <button (click)="openChangeLanguage()"></button>
+  <div id="langWrapper" *ngIf="transLoaded">
+      <button id="selectLanguage" (click)="openChangeLanguage()">{{'LANG.TITLE'|translate}}</button>
   </div>
 
   <div id="text-wrapper">
