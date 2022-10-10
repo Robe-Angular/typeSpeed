@@ -2,6 +2,7 @@ import { Component,ViewChild,ElementRef,OnInit,DoCheck } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectLanguageComponent } from './components/dialogs/select-language/select-language.component';
+import { isNull } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { SelectLanguageComponent } from './components/dialogs/select-language/se
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   public text:string;
   public startTime: Date;
@@ -18,10 +19,8 @@ export class AppComponent {
   public initialWords: number;
   public chartSpeed:number;
   public wordSpeed:number;
-  public transLoaded:boolean;
+  public translatorLoaded:boolean;
   
-  
-
   @ViewChild("textElement",{static:false}) textArea:ElementRef;
   constructor(
     private _translate: TranslateService,
@@ -35,13 +34,21 @@ export class AppComponent {
     this.initialWords = 0;
     this.chartSpeed = 0;
     this.wordSpeed = 0;
-    this.transLoaded = false;
-    _translate.setDefaultLang('en');
-    _translate.use('en').subscribe((res:any) => {
-      this.transLoaded = true;
-    });
+    this.translatorLoaded = false;
+    this._translate.setDefaultLang('en');
+  }
+  ngOnInit(): void {
+    let currentLocalLang = localStorage.getItem('lang') as string;
+    currentLocalLang = (currentLocalLang == '') ? 'en': currentLocalLang;
+    this._translate.use(currentLocalLang);
+    console.log(this._translate.currentLoader);
+    this._translate.currentLoader.getTranslation('es').subscribe((any) => {
+      console.log(any);
+      this.translatorLoaded = true;
+    })
     
   }
+
   begin(){
     this.textArea.nativeElement.focus();
     this.startTime = new Date();

@@ -67,6 +67,7 @@ export class SelectLanguageComponent implements OnInit {
 
   selectLang(lang:string){
     this._translator.use(lang);
+    localStorage.setItem('lang',lang);
     this._dialogRef.close();
   }
 
